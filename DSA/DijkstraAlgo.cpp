@@ -55,7 +55,7 @@ int main(){
         cin>> u>>v>>w;
 
         graph[u].push_back({v,w});
-        //graph[v].push_back({u,w});
+        graph[v].push_back({u,w});
     }
     int src;
 
@@ -63,14 +63,10 @@ int main(){
     cin>>src;
 
     vector<int> dist = dijkstra(v,graph,src);
-    int ans =0;
 
     for(int i=0;i<v;i++){
         cout<<src<<"->"<<i<<" : "<<dist[i]<<endl;
-        ans = max(ans,dist[i]);
     }
-
-    cout<<"network delay time : "<<ans<<endl;
 
 
 
