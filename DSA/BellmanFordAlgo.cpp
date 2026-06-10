@@ -10,7 +10,7 @@ vector<int> bellmanford(int V,vector<vector<int>> & edgelist,int src){
     dist[src]= 0;
 
     for(int i=0;i<V;i++){
-        for(auto & edge : edgelist){
+        for(auto &  edge : edgelist){
             int u = edge[0];
             int v = edge[1];
             int w = edge[2];
