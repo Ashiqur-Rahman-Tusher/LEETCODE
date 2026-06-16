@@ -1,19 +1,20 @@
-#include<iostream>
-#include<vector>
-#include<climits>
-#include<cmath>
+#include <iostream>
+#include <vector>
+#include <climits>
+#include <cmath>
 
 using namespace std;
 
-int minKey(vector<int>& key, vector<bool>& mstSet)
+int minKey(vector<int> &key, vector<bool> &mstSet)
 {
     int mini = INT_MAX;
     int index = -1;
 
-    for(int i=0; i<key.size(); i++)
+    for (int i = 0; i < key.size(); i++)
     {
-        if(!mstSet[i] && key[i] < mini)
+        if (!mstSet[i] && key[i] < mini)
         {
+            
             mini = key[i];
             index = i;
         }
@@ -22,7 +23,7 @@ int minKey(vector<int>& key, vector<bool>& mstSet)
     return index;
 }
 
-int minCostConnectPoints(vector<vector<int>>& points)
+int minCostConnectPoints(vector<vector<int>> &points)
 {
     int V = points.size();
 
@@ -30,9 +31,9 @@ int minCostConnectPoints(vector<vector<int>>& points)
     vector<vector<int>> graph(V, vector<int>(V, 0));
 
     // Manhattan Distance Calculation
-    for(int i=0; i<V; i++)
+    for (int i = 0; i < V; i++)
     {
-        for(int j=0; j<V; j++)
+        for (int j = 0; j < V; j++)
         {
             graph[i][j] =
                 abs(points[i][0] - points[j][0]) +
@@ -46,16 +47,16 @@ int minCostConnectPoints(vector<vector<int>>& points)
 
     key[0] = 0;
 
-    for(int count=0; count<V-1; count++)
+    for (int count = 0; count < V - 1; count++)
     {
         int u = minKey(key, mstSet);
 
         mstSet[u] = true;
 
-        for(int v=0; v<V; v++)
+        for (int v = 0; v < V; v++)
         {
-            if(!mstSet[v] &&
-               graph[u][v] < key[v])
+            if (!mstSet[v] &&
+                graph[u][v] < key[v])
             {
                 key[v] = graph[u][v];
                 parent[v] = u;
@@ -67,7 +68,7 @@ int minCostConnectPoints(vector<vector<int>>& points)
 
     cout << "\nMST Edges:\n";
 
-    for(int i=1; i<V; i++)
+    for (int i = 1; i < V; i++)
     {
         cout << parent[i]
              << " -> "
@@ -93,7 +94,7 @@ int main()
 
     cout << "Enter points (x y):\n";
 
-    for(int i=0; i<n; i++)
+    for (int i = 0; i < n; i++)
     {
         cin >> points[i][0] >> points[i][1];
     }
